@@ -1,0 +1,17 @@
+we are degsign a rest full api (JSON)
+
+NOTE:- your sever is hybrid (your server are sport a browser and mobile app)
+
+
+GET /users -> HTML Document Render
+
+GET /api/users -> return all users as JSON - DONE ✅
+
+GET /api/users/1 -> return id 1 users
+GET /api/users/2 -> return id 2 users (this is Dynamic Path parameter and how we do it // /api/users/:id (:id -> it's a variable name))
+
+POST /api/users -> create a new users
+
+PATCH /api/users -> update or edit on the besises of id
+
+DELETE /api/users -> delete the user with the help of id
