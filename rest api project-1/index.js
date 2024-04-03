@@ -1,7 +1,15 @@
 const express = require('express');
+const fs = require('fs');
 const users = require('./MOCK_DATA.json');
 const app = express();
 const PORT = 8000;
+
+
+//MIDDLEWARE -> something like plugin
+
+app.use(express.urlencoded({ extended: false}));
+
+
 
 //ROUTS
 
@@ -41,13 +49,17 @@ app.route("/api/users/:id").get((req, res) => {
             res.json({ status: "panding"});
         })
 
-app.get("/api/users/:id", )
 
 //POST
 
 app.post("/api/users", (req, res) => {
     // create a user
-    res.json({ status: "panding"});
+    const body = req.body
+    // console.log('Body: ', body);
+    users.push({...body, id: users.length + 1})
+    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {  // is isliye likha he ki hamne array ki jagah ek fil me ussse daala he
+        return res.json({ status: "success", id: users.length });
+    })
 })
 
 //PATCH
