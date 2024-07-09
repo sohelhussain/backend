@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .header-bg {
+            background-color: #f8f8f8;
+        }
+
+        .primary-bg {
+            background-color: #4a90e2;
+        }
+
+        .secondary-bg {
+            background-color: #e5e5e5;
+        }
+
+        .active-user {
+            background-color: #4a90e2;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="flex h-screen">
+        <!-- User List -->
+        <div class="w-1/3 p-4 bg-white border-r shadow-lg">
+            <div class="pb-3 border-b header-bg">
+                <h2 class="text-xl font-semibold text-gray-800">Users</h2>
+            </div>
+            <ul id="userList" class="py-4">
+                <li class="p-3 mb-2 cursor-pointer hover:bg-gray-200" onclick="openChat('user1')">User 1</li>
+                <li class="p-3 mb-2 cursor-pointer hover:bg-gray-200" onclick="openChat('user2')">User 2</li>
+                <li class="p-3 mb-2 cursor-pointer hover:bg-gray-200" onclick="openChat('user3')">User 3</li>
+            </ul>
+        </div>
+
+        <!-- Chat Box -->
+        <div class="w-2/3 p-4 bg-white shadow-lg">
+            <div class="flex justify-between items-center pb-3 border-b header-bg">
+                <h2 id="chatHeader" class="text-xl font-semibold text-gray-800">Chat Room</h2>
+                <button class="text-primary-bg hover:underline">Logout</button>
+            </div>
+            <div id="chatBox" class="h-80 overflow-y-auto py-4 secondary-bg">
+                <!-- Chat messages will go here -->
+                <div id="user1" class="chat hidden">
+                    <div class="flex justify-start mb-4">
+                        <div class="bg-gray-200 p-3 rounded-lg">
+                            <p class="text-gray-800">Hello User 1! How can I help you today?</p>
+                            <span class="text-xs text-gray-500">10:30 AM</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="user2" class="chat hidden">
+                    <div class="flex justify-start mb-4">
+                        <div class="bg-gray-200 p-3 rounded-lg">
+                            <p class="text-gray-800">Hello User 2! How can I help you today?</p>
+                            <span class="text-xs text-gray-500">10:30 AM</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="user3" class="chat hidden">
+                    <div class="flex justify-start mb-4">
+                        <div class="bg-gray-200 p-3 rounded-lg">
+                            <p class="text-gray-800">Hello User 3! How can I help you today?</p>
+                            <span class="text-xs text-gray-500">10:30 AM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center border-t pt-4 header-bg">
+                <input id="messageInput" type="text" placeholder="Type your message..."
+                    class="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring focus:border-primary-bg">
+                <button class="ml-2 px-4 py-2 primary-bg text-white rounded-lg">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openChat(userId) {
+            document.querySelectorAll('.chat').forEach(chat => {
+                chat.classList.add('hidden');
+            });
+            document.querySelectorAll('#userList li').forEach(user => {
+                user.classList.remove('active-user');
+            });
+            document.getElementById(userId).classList.remove('hidden');
+            document.querySelector(`[onclick="openChat('${userId}')"]`).classList.add('active-user');
+            document.getElementById('chatHeader').innerText = `Chat with ${userId}`;
+        }
+    </script>
+
+</body>
+
+</html>
