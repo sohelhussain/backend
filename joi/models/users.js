@@ -44,8 +44,11 @@ function validateModel(data) {
         age: joi.string()
     });
 
-    let resolveans = schema.validate(data)
-    return resolveans;
+    let {error} = schema.validate(data)
+
+    return error
+
+    // return resolveans;
     // console.log(resolveans.error?.message);
 }
 

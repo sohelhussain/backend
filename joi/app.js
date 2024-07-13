@@ -11,7 +11,8 @@ app.get("/", (req, res, next) => {
 
 app.post("/create", async (req, res, next) => {
     let {username, name, email, age, number} = req.body;
-    validateModel({username, name, email, age, number})
+    let error = validateModel({username, name, email, age, number})
+    if (error) return res.status(500).send(error.message); // if we write a return instead else 
 //   const user = await userModel.create({
 //     username: req.body.username,
 //   });
